@@ -1,0 +1,9 @@
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\bin\Debug\Habeeb_Assessment.BusinessLogic.dll
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\bin\Debug\Habeeb_Assessment.BusinessLogic.pdb
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\bin\Debug\Habeeb_Assessment.DataAccess.dll
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\bin\Debug\Habeeb_Assessment.DataAccess.pdb
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\obj\Debug\Habeeb_Assessment.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\obj\Debug\Habeeb_Assessment.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\obj\Debug\Habeeb_A.93E1EC6D.Up2Date
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\obj\Debug\Habeeb_Assessment.BusinessLogic.dll
+C:\Users\Habeeb\source\repos\Habeeb_Assessment\Habeeb_Assessment.BusinessLogic\obj\Debug\Habeeb_Assessment.BusinessLogic.pdb

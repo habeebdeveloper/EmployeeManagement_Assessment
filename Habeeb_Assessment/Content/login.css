@@ -1,0 +1,97 @@
+﻿:root {
+    --primary-color: #1e72bb;
+    --secondary-color: #87b25f;
+    --light-text: #6c757d;
+    --white-text: #fff;
+    --black-text: #000
+}
+body {
+    background-image: radial-gradient(#E0E0E0 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.login-card {
+    max-width: 900px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    margin: 1rem;
+}
+
+.welcome-column {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white-text);
+}
+
+.login-logo {
+    display: block;
+    width: 100px;
+    margin: 0 auto 20px;
+}
+
+.input-group-text {
+    background-color: #fff; 
+}
+
+.login-button {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white-text);
+}
+
+    .login-button:hover {
+        opacity: .9;
+        color: var(--white-text);
+        background-color: var( --primary-color);
+    }
+
+.footer-credits {
+    background: var(--black-text);
+    color: var(--white-text);
+    text-align: center;
+    font-size: .9rem;
+    padding: 10px;
+}
+
+
+
+.notie-container {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.notie-background-success {
+    background-color: #57BF57;
+}
+
+.notie-background-warning {
+    background-color: #D6A14D;
+}
+
+.notie-background-error {
+    background-color: #ED1C2E;
+}
+
+@media screen and (max-width: 900px) {
+    .notie-container {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .notie-container {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .notie-container {
+        font-size: 1rem;
+    }
+}

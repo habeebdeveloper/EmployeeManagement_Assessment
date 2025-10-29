@@ -1,0 +1,56 @@
+@{
+    Layout = null;
+    ViewBag.Title = "Test API";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Test API Endpoints</h1>
+    
+    <button id="testLogin">Test Login API</button>
+    <button id="testEmployee">Test Employee API</button>
+    
+    <div id="results"></div>
+
+    <script>
+        $('#testLogin').click(function() {
+            console.log('Testing login API...');
+            $.ajax({
+                url: '/api/Account/Login',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({Username: 'admin', Password: 'admin'}),
+                success: function(response) {
+                    console.log('Login API Success:', response);
+                    $('#results').html('<p style="color: green;">Login API Success: ' + JSON.stringify(response) + '</p>');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('Login API Error:', jqXHR.status, textStatus, errorThrown);
+                    $('#results').html('<p style="color: red;">Login API Error: ' + jqXHR.status + ' - ' + textStatus + '</p>');
+                }
+            });
+        });
+
+        $('#testEmployee').click(function() {
+            console.log('Testing employee API...');
+            $.ajax({
+                url: '/api/EmployeeApi/GetAll',
+                type: 'GET',
+                success: function(response) {
+                    console.log('Employee API Success:', response);
+                    $('#results').html('<p style="color: green;">Employee API Success: ' + JSON.stringify(response) + '</p>');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('Employee API Error:', jqXHR.status, textStatus, errorThrown);
+                    $('#results').html('<p style="color: red;">Employee API Error: ' + jqXHR.status + ' - ' + textStatus + '</p>');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

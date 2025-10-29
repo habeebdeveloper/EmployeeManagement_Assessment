@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - JiView</title>
+
+    @*(CSS)*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="~/Content/notie.min.css" rel="stylesheet" />
+    <link href="~/Content/dashbaord.css" rel="stylesheet" />    
+
+</head>
+<body>
+    <div class="container-fluid p-0 d-flex vh-100">
+
+        @*Nav Sidebar*@
+        <div class="sidebar text-white bg-dark-subtle d-flex flex-column" id="sidebar" style="width:260px;">
+            <div class="d-flex flex-column p-3 h-100">
+
+                @*Jivi Logo*@
+                <a href="@Url.Action("Index", "Home")" class="d-flex align-items-center justify-content-center mb-2 text-white text-decoration-none border-bottom pb-2">
+                    <img src="~/Images/JiViewLogo.png" alt="JiView Logo" width="40" height="40" class="me-2 rounded">
+                    <span class="h4 mb-0 fw-bold">JiView</span>
+                </a>
+
+                @*Navigation Link*@
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Profile", "Employee")" class="nav-link active" aria-current="page">
+                            <i class="bi bi-person-badge me-2"></i> Employee Profile
+                        </a>
+                    </li>
+                </ul>
+
+                @*User Login Details*@
+                <div class="mt-auto pt-3 border-top">
+                    <div class="d-flex align-items-center p-2 bg-body-tertiary rounded mb-0 userCard">
+                        <div>
+                            <span class="d-block fw-bold small text-white">@(Session["UserName"] ?? "Guest")</span>
+                            <span class="d-block text-muted small text-white-50 pb-2">@(Session["Role"] ?? "User")</span>
+                            <span>
+                                @*Logout Button*@
+                                @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="#" class="nav-link text-white" onclick="document.getElementById('logoutForm').submit(); return false;">
+                                        <i class="bi bi-box-arrow-right"></i> Log out
+                                    </a>
+                                }
+                            </span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content flex-grow-1 d-flex flex-column bg-light">
+            @*Body Content*@
+            <div class="flex-grow-1 overflow-auto">
+                <div class="body-content p-4">
+                    @RenderBody()
+                </div>
+            </div>
+
+            @*Footer Content*@
+            <footer class="p-3 text-center border-top bg-white">
+                <p class="mb-0 text-muted small">&copy; @DateTime.Now.Year - JiView Solutions</p>
+            </footer>
+        </div>
+    </div>
+
+    @* JavaScript Files *@
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/notie.min.js"></script> 
+    <script src="~/Scripts/dataTables.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap5.js"></script>
+    <script src="~/Scripts/employee.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

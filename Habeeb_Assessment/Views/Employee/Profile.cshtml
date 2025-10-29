@@ -1,0 +1,188 @@
+﻿@{
+    ViewBag.Title = "Employee Profile";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-0">Employee Management</h2>
+            <p class="text-muted mb-0 small">Manage employee details and records easily</p>
+        </div>
+        <div>
+            <div class="btn-group me-2" role="group">
+                <button class="btn btn-outline-success" id="btnShowActive">
+                    <i class="bi bi-check-circle me-1"></i> Active
+                </button>
+                <button class="btn btn-outline-danger" id="btnShowInactive">
+                    <i class="bi bi-x-circle me-1"></i> Inactive
+                </button>
+            </div>
+            <button class="btn btn-warning me-2" id="btnBulkDelete" style="display: none;">
+                <i class="bi bi-person-x me-1"></i> Deactivate Selected
+            </button>
+            <button class="btn btn-primary" id="btnAdd" data-bs-toggle="modal" data-bs-target="#empModal">
+                <i class="bi bi-plus me-1"></i> Add Employee
+            </button>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm corporate-table">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table id="tblEmployees" class="table table-hover mb-0 corporate-table" style="width:100%">
+                    <thead class="corporate-header">
+                        <tr>
+                            <th class="text-center align-middle" style="width: 50px;">
+                                <input type="checkbox" id="selectAll" class="form-check-input">
+                            </th>
+                            <th class="text-center align-middle" style="width: 120px;">Employee No</th>
+                            <th class="align-middle" style="width: 200px;">Full Name</th>
+                            <th class="align-middle" style="width: 150px;">Designation</th>
+                            <th class="text-end align-middle" style="width: 120px;">Monthly Salary</th>
+                            <th class="text-center align-middle" style="width: 100px;">Status</th>
+                            <th class="text-center align-middle" style="width: 120px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="corporate-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Add/Edit Modal *@
+<div class="modal fade" id="empModal" tabindex="-1" aria-labelledby="empModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content border-0 shadow-lg corporate-modal">
+            <form id="empForm" novalidate>
+                <div class="modal-header corporate-header-modal">
+                    <h5 class="modal-title fw-bold modalTitle" id="empModalLabel">Employee Details</h5>
+                    <button type="button" class="btn-close btn-close-white corporate-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <input type="hidden" id="EmployeeId" />
+
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="EmployeeNumber" class="form-label fw-semibold">Employee No <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="EmployeeNumber" placeholder="Enter employee number" required maxlength="100">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="EmployeeName" class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="EmployeeName" placeholder="Enter full name" required maxlength="100">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="DOB" class="form-label fw-semibold">Date of Birth <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="DOB" placeholder="DD-MM-YYYY" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="ReligionId" class="form-label fw-semibold">Religion <span class="text-danger">*</span></label>
+                            <select id="ReligionId" class="form-select" required>
+                                <option value="">Select religion</option>
+                                <option value="1">Christianity</option>
+                                <option value="2">Islam</option>
+                                <option value="3">Hinduism</option>
+                                <option value="4">Buddhism</option>
+                                <option value="5">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="RoleName" class="form-label fw-semibold">Designation <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="RoleName" placeholder="Enter designation" required maxlength="50">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="DOJ" class="form-label fw-semibold">Date of Joining <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="DOJ" placeholder="DD-MM-YYYY" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="BasicSalary" class="form-label fw-semibold">Monthly Salary <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="BasicSalary" placeholder="Enter salary amount" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-semibold">Status</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="ActiveStatus" checked>
+                                <label class="form-check-label" for="ActiveStatus">
+                                    <span class="badge bg-success-subtle text-success-emphasis" id="statusBadge">Active</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 py-1">
+                    <button type="button" class="btn btn-danger btn-md" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn corporate-btn-primary btn-md">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+ @*View Employee Modal*@ 
+<div class="modal fade" id="viewEmpModal" tabindex="-1" aria-labelledby="viewEmpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content border-0 shadow-lg corporate-modal">
+            <div class="modal-header corporate-header-modal">
+                <h5 class="modal-title fw-bold modalTitle" id="viewEmpModalLabel">View Employee Details</h5>
+                <button type="button" class="btn-close btn-close-white corporate-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Employee No</label>
+                        <p class="form-control-plaintext" id="viewEmployeeNumber">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Full Name</label>
+                        <p class="form-control-plaintext" id="viewEmployeeName">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Date of Birth</label>
+                        <p class="form-control-plaintext" id="viewDOB">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Religion</label>
+                        <p class="form-control-plaintext" id="viewReligionName">-</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Designation</label>
+                        <p class="form-control-plaintext" id="viewRoleName">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Date of Joining</label>
+                        <p class="form-control-plaintext" id="viewDOJ">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Monthly Salary</label>
+                        <p class="form-control-plaintext" id="viewBasicSalary">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Status</label>
+                        <p class="form-control-plaintext" id="viewActiveStatus">-</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Created By</label>
+                        <p class="form-control-plaintext" id="viewCreatedBy">-</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label fw-semibold text-muted">Created Date</label>
+                        <p class="form-control-plaintext" id="viewCreatedDate">-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 py-1">
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

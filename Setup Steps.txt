@@ -1,0 +1,9 @@
+Setup Steps
+1. Open SQL Server Management Studio
+2. Create a new database named "EmployeeDB"
+3. Run the provided SQL_Scripts.sql under SQL_Scripts folder to create tables, stored procedures, and dummy data
+4. Open the Visual Studio solution (Habeeb_Assessment.sln)
+5. Run the project
+6. Login using:
+   Username: habeeb
+   Password: habeeb123
